@@ -31,6 +31,12 @@ var gainNode = audioCtx.createGain();
 var canvas = document.querySelector('.visualizer');
 var canvasCtx = canvas.getContext("2d");
 
+var clearCanvas = function () {
+    canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+    canvasCtx.fillStyle = "black";
+    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+};
+
 var intendedWidth = document.querySelector('.wrapper').clientWidth;
 
 canvas.setAttribute('width', intendedWidth);
@@ -90,15 +96,29 @@ function visualize() {
             drawVisual = requestAnimationFrame(draw);
 
             analyser.getByteFrequencyData(dataArray);
-            //console.log('analyser',analyser.getByteFrequencyData(dataArray))
-            //console.log(dataArray[2])
 
+            function getPeaksAtThreshold(data, threshold) {
+                var peaksArray = [];
+                var length = data.length;
+                for(var i = 0; i < length;) {
+                    if (data[i] > threshold) {
+                        peaksArray.push(i);
+                        // Skip forward ~ 1/4s to get past this peak.
+                        i += 10000;
+                    }
+                    i++;
+                }
+                return peaksArray;
+            }
+            
+            //console.log('getPeaksAtThreshold', getPeaksAtThreshold(dataArray))
 
             var c = dataArray;
             //var color = 'rgb('+c[6]+','+c[6]+' ,'+ c[6]+')';
             //var diff = c[1] - prev;
             var diff = c[c.length - 1] - c[0];
-            diff = diff >= 0 ? diff : -diff
+            diff = diff >= 0 ? diff : -diff;
+            diff *= 2;
 
             //diff *= 8;
             //diff = diff >= 256 ? 256 : diff;
@@ -137,9 +157,7 @@ function visualize() {
     }
 
     if (visualSetting == "off") {
-        canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-        canvasCtx.fillStyle = "red";
-        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+        clearCanvas();
     }
 
 }
@@ -157,6 +175,7 @@ mute.onclick = muteSound;
 
 function muteSound() {
     if (mute.id == "") {
+        clearCanvas();
         gainNode.gain.value = 0;
         console.log(gainNode.gain.value)
         mute.id = "activated";
@@ -168,3 +187,4 @@ function muteSound() {
         mute.innerHTML = "Mute";
     }
 }
+
