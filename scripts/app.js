@@ -30,6 +30,13 @@ var gainNode = audioCtx.createGain();
 
 var canvas = document.querySelector('.visualizer');
 var canvasCtx = canvas.getContext("2d");
+var biquadFilter = audioCtx.createBiquadFilter();
+
+biquadFilter.type = "lowshelf";
+biquadFilter.frequency.value = 200;
+biquadFilter.gain.value = 25;
+
+var convolver = audioCtx.createConvolver();
 
 var clearCanvas = function () {
     canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -60,6 +67,8 @@ if (navigator.getUserMedia) {
             source = audioCtx.createMediaStreamSource(stream);
             //source.connect(gainNode);
             source.connect(analyser);
+            biquadFilter.connect(convolver);
+            convolver.connect(gainNode);
             gainNode.connect(audioCtx.destination);
 
             visualize();
