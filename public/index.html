@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="Flashlight">
 <head>
     <meta charset="UTF-8">
     <title>Flashlight</title>
@@ -7,16 +7,18 @@
     <!-- JS -->
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular-resource/angular-resource.min.js"></script>
-    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!--Flashlight-->
+    <script src="app/flashlight.js"></script>
+    <script src="app/FlashlightController.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
 </head>
-<body>
+<body ui-view>
 
-<button class="btn btn-success">Go!</button>
-Hello, pretty man
 </body>
 </html>
