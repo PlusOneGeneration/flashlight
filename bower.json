@@ -1,0 +1,15 @@
+{
+  "name": "Flashlight",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "moduleType": [
+    "globals"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.8",
+    "angular-resource": "~1.4.8"
+  },
+  "homepage": ""
+}
