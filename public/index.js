@@ -33,8 +33,8 @@ var canvasCtx = canvas.getContext("2d");
 var biquadFilter = audioCtx.createBiquadFilter();
 
 biquadFilter.type = "lowshelf";
-biquadFilter.frequency.value = 200;
-biquadFilter.gain.value = 25;
+biquadFilter.frequency = 70;
+biquadFilter.gain = 25;
 
 var convolver = audioCtx.createConvolver();
 

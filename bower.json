@@ -7,9 +7,10 @@
     "globals"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.5",
+    "bootstrap": "~3.3.6",
     "angular": "~1.4.8",
-    "angular-resource": "~1.4.8"
+    "angular-resource": "~1.3.20",
+    "angular-ui-router": "~0.2.15"
   },
   "homepage": ""
 }

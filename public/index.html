@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Flashlight</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Music FlashLight</title>
 
     <!-- JS -->
     <script src="lib/jquery/dist/jquery.js"></script>
@@ -13,10 +14,41 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
+    <link href="styles/normalize.css" rel="stylesheet" type="text/css">
+    <link href="styles/app.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
-<button class="btn btn-success">Go!</button>
-Hello, pretty man
+<div class="wrapper">
+
+    <header>
+        <h1>Music FlashLight</h1>
+    </header>
+
+    <canvas class="visualizer" width="640" height="100"></canvas>
+
+</div>
+
+
+
+<label for="toggle">Setting</label>
+<input type="checkbox" id="toggle">
+<aside>
+    <form class="controls">
+        <div>
+            <label for="visual">Visualizer settings</label>
+            <select id="visual" name="visual">
+                <option value="frequencybars" selected>Frequency bars</option>
+                <option value="off">Off</option>
+            </select>
+        </div>
+        <div>
+            <a id="mute">Mute</a>
+        </div>
+    </form>
+</aside>
+<script src="index.js"></script>
+
 </body>
 </html>
