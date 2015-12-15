@@ -36,6 +36,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ##curl
   config.vm.provision "shell", inline: "which curl || sudo apt-get install -y curl"
+  
+  ##git
+  config.vm.provision "shell", inline: "which git || sudo apt-get install -y git"
 
   ##bash-completion
   config.vm.provision "shell", inline: "sudo dpkg -l | grep bash-completion || ( sudo apt-get install -y bash-completion )"
