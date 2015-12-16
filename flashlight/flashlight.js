@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, io) {
     var TokenService = require('./TokenService');
 
     app.get('/api/flashlight', function (req, res) {

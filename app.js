@@ -1,14 +1,25 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
-
+var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
-require('./flashlight/flashlight')(app);
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-app.listen(3000, function () {
-  console.log('Server working!');
+var port = 3000;
+server.listen(port, function () {
+    console.log('Started: ' + port);
 });
+
+io.on('connection', function (socket) {
+    socket.on('hello', function (data) {
+        console.log('Hello!', data);
+        socket.emit('xxx', {message: 'hello to you too'})
+    });
+
+});
+
+require('./flashlight/flashlight')(app, io);
