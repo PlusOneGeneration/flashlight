@@ -1,10 +1,11 @@
 {
   "name": "Flashlight",
   "version": "0.0.1",
-  "description": "",
+  "description": "Flashlight",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon -w app.js -i node_modules/ -i public/",
+    "setup": "npm install && bower install --config.interactive=false",
+    "start": "nodemon -L -w app.js -i node_modules/ -i public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
