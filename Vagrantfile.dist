@@ -47,7 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", inline: "which npm || sudo apt-get update -y && sudo apt-get -y install python-software-properties python g++ make && sudo add-apt-repository -y ppa:chris-lea/node.js && sudo apt-get update -y && sudo apt-get -y install nodejs"
 
   ##nodemon
-  config.vm.provision "shell", inline: "which nodemon || npm install -g nodemon@1.7.3"
+  config.vm.provision "shell", inline: "which nodemon || sudo npm install -g nodemon@1.7.3"
 
   ##bower
   config.vm.provision "shell", inline: "which bower || sudo npm install -g bower"
