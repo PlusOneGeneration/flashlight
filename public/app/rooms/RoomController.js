@@ -16,9 +16,9 @@ angular.module('Flashlight')
                 token: $state.params.room
             };
             SocketService.emit('room.signal', signalModel);
-        }, 2000);
+        }, 500);
 
-        SocketService.on('processedSignal', function (data) {
+        SocketService.scopeOn($scope, 'processedSignal', function (data) {
             $scope.$apply(function () {
                 $scope.signal = data.signal;
             });
