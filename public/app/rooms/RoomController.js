@@ -1,6 +1,7 @@
 angular.module('Flashlight')
     .controller('RoomController', function ($scope, SocketService, $interval, $location, $state) {
         $scope.signal = 0;
+        POC_analyser();
 
         SocketService.emit('room.connect', {token: $state.params.room});
 
