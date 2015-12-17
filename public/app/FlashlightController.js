@@ -1,11 +1,9 @@
 angular.module('Flashlight')
-    .factory('Room', function ($resource) {
-        return $resource('/api/rooms/:roomId')
-    })
-    .controller('FlashlightController', function ($scope, $state, Room) {
+    .controller('FlashlightController', function ($scope, $state, SocketService) {
         $scope.listen = function () {
-            new Room().$save().then(function (room) {
-                $state.go('room', {room: room.room});
+            SocketService.emit('room.create', function (err, data) {
+                if (err) return console.error(err);
+                $state.go('room', {room: data.room});
             });
         };
     })

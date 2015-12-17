@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Flashlight">
+<head>
+    <meta charset="UTF-8">
+    <title>Flashlight</title>
+
+    <!-- JS -->
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/lodash/lodash.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!--Socket-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app/service/SocketService.js"></script>
+
+    <!--Flashlight-->
+    <script src="app/app.js"></script>
+    <script src="app/FlashlightController.js"></script>
+    <script src="app/rooms/RoomController.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
+</head>
+<body ui-view>
+
+</body>
+</html>

@@ -1,24 +1,16 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
+require('./flashlight/config/application').wrap(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
+var SocketIO = app.container.get('SocketIO');
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+SocketIO.create(server);
 
-var port = 3000;
+require('./flashlight/communication')(app);
 
-io.on('connection', function (socket) {
-    socket.on('signal', function (data) {
-        socket.emit('processedSignal', {signal: data.signal});
-    });
-});
-
+var port = app.config.get('port');
 server.listen(port, function () {
     console.log('Started: ' + port);
 });
-
-require('./flashlight/room')(app);

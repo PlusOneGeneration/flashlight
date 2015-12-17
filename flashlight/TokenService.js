@@ -1,9 +1,11 @@
-var TokenService = function () {
+var TokenService = function (key) {
     var jwt = require('jsonwebtoken');
-    var secretKey = 'roomOnFlashlight';
+    var secretKey = key;
 
     this.encode = function (data, next) {
-        jwt.sign(data, secretKey, {algorithm: 'HS512'}, next);
+        jwt.sign(data, secretKey, {algorithm: 'HS512'}, function (token) {
+            next(null, token);
+        });
     };
 
     this.decode = function (token, next) {
@@ -11,4 +13,5 @@ var TokenService = function () {
     };
 
 };
-module.exports = new TokenService;
+
+module.exports = TokenService;
