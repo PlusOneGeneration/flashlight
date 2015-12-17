@@ -1,5 +1,5 @@
 angular
-    .module('Flashlight', ['ui.router', 'ngResource', 'SocketService'])
+    .module('Flashlight', ['ui.router', 'SocketService'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/flashlight");
 
@@ -17,6 +17,11 @@ angular
                 url: "/rooms/:room",
                 templateUrl: "app/rooms/room.html",
                 controller: 'RoomController'
+            })
+            .state('listener', {
+                url: "/listener/:room",
+                templateUrl: "app/rooms/listener.html",
+                controller: 'ListenerController'
             })
     })
 ;

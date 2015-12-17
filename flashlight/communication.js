@@ -6,23 +6,37 @@ module.exports = function (app) {
 
         socket.on('room.create', function (data, next) {
             var room = Math.random(3);
+            console.log('Create Room', room);
+            socket.join(room);
 
             TokenService.encode({room: room, role: 'master'}, function (err, token) {
                 next(err, {room: token});
             });
         });
 
+        socket.on('room.listener', function (data, next) {
+            TokenService.decode(data.token, function (err, data) {
+                TokenService.encode({room: data.room, role: 'listener'}, function (err, token) {
+                    next(err, {room: token});
+                });
+            });
+        });
+
         socket.on('room.connect', function (data) {
-            var room = 'need to add room name'; // by data.token
-            socket.join(room);
+            console.log('!!!!');
+            TokenService.decode(data.token, function (err, data) {
+                if (err) return console.error(err);
+                var room = data.room;
+                console.log('Join Room', room);
+                socket.join(room);
+            });
         });
 
         socket.on('room.signal', function (data) {
-            var room = 'need to add room name'; // by token
-            console.log(data);
-            SocketIO.emitRoom(room, 'processedSignal', {signal: data.signal});
+            TokenService.decode(data.token, function (err, dataByToken) {
+                var room = dataByToken.room;
+                SocketIO.emitRoom(room, 'processedSignal', {signal: data.signal});
+            });
         });
-
-
     });
 };
