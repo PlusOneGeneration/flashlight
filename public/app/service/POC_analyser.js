@@ -1,4 +1,4 @@
-function POC_analyser() {
+function POC_analyser(emit) {
     // fork getUserMedia for multiple browser versions, for those
 // that need prefixes
 
@@ -117,12 +117,14 @@ function POC_analyser() {
                 diff *= 2;
 
                 //diff *= 8;
-                //diff = diff >= 256 ? 256 : diff;
+                diff = diff >= 256 ? 256 : diff;
                 //diff = diff >= 90 ? diff : 0;
 
                 //var color = 'rgb(' + diff + ',' + diff + ' ,' + diff + ')';
                 var color = 'rgb(' + diff + ' , ' + diff + ', ' + diff + ')';
                 var colorBorder = 'rgb(' + 255-diff + ', ' + 255-diff + ', ' + 255-diff + ')';
+
+                emit(diff);
 
                 //function invert(r, g, b){r = 255-r, g = 255-g, b=255-b; return {'r':r,'g':g,'b':b}}
 
@@ -134,24 +136,24 @@ function POC_analyser() {
 
                 //console.log(prev, diff);
 
-
-                $('body .strobe').css({
-                    'background-color': color,
-                    'border-color': colorBorder
-                });
-
-                $('body .strobe1').css({
-                    'background-color': color1
-                });
-                $('body .strobe2').css({
-                    'background-color': color2
-                });
-                $('body .strobe3').css({
-                    'background-color': color3
-                });
-                $('body .strobe4').css({
-                    'background-color': color4
-                });
+                //
+                //$('body .strobe').css({
+                //    'background-color': color,
+                //    'border-color': colorBorder
+                //});
+                //
+                //$('body .strobe1').css({
+                //    'background-color': color1
+                //});
+                //$('body .strobe2').css({
+                //    'background-color': color2
+                //});
+                //$('body .strobe3').css({
+                //    'background-color': color3
+                //});
+                //$('body .strobe4').css({
+                //    'background-color': color4
+                //});
 
 
 
