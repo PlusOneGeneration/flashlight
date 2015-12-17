@@ -31,12 +31,16 @@ function POC_analyser(emit) {
 
     var canvas = document.querySelector('.visualizer');
     var canvasCtx = canvas.getContext("2d");
-    var biquadFilter = audioCtx.createBiquadFilter();
 
-    biquadFilter.type = "lowpass";
-    biquadFilter.frequency = 64;
-    biquadFilter.Q = 10;
-//biquadFilter.gain = 25;
+    var highcutFilter = audioCtx.createBiquadFilter();
+    highcutFilter.type = "lowpass";
+    highcutFilter.frequency.value = 120;
+    highcutFilter.Q = 15;
+
+    var lowcutFilter = audioCtx.createBiquadFilter();
+    lowcutFilter.type = "highpass";
+    lowcutFilter.frequency.value = 40;
+    lowcutFilter.Q = 15;
 
     var convolver = audioCtx.createConvolver();
 
@@ -69,7 +73,8 @@ function POC_analyser(emit) {
                 source = audioCtx.createMediaStreamSource(stream);
                 //source.connect(gainNode);
                 source.connect(analyser);
-                biquadFilter.connect(convolver);
+                highcutFilter.connect(convolver);
+                lowcutFilter.connect(convolver);
                 convolver.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
 
