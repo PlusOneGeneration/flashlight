@@ -77,7 +77,7 @@ if (navigator.getUserMedia) {
 
         // Error callback
         function (err) {
-            console.log('The following gUM error occured: ' + err);
+            console.log('The following getUserMedia error occured: ' + err);
         }
     );
 } else {
@@ -105,10 +105,9 @@ function visualize() {
             analyser.getByteFrequencyData(dataArray);
 
             //console.log(analyser.getByteFrequencyData(dataArray))
-            process(dataArray);
 
-
-            //var c = dataArray;
+            var c = dataArray;
+            process(c);
 
             //var color = 'rgb('+c[6]+','+c[6]+' ,'+ c[6]+')';
             //var diff = c[1] - prev;
@@ -122,19 +121,44 @@ function visualize() {
 
             //var color = 'rgb(' + diff + ',' + diff + ' ,' + diff + ')';
             var color = 'rgb(' + diff + ' , ' + diff + ', ' + diff + ')';
+            var colorBorder = 'rgb(' + 255-diff + ', ' + 255-diff + ', ' + 255-diff + ')';
+
+            //function invert(r, g, b){r = 255-r, g = 255-g, b=255-b; return {'r':r,'g':g,'b':b}}
+
+            var color1 = 'rgb(' + diff + ', 0, 0)';
+            var color2 = 'rgb(' + diff + ',' + diff + ', 0)';
+            var color3 = 'rgb(' + diff + ',0, ' + diff + ')';
+            var color4 = 'rgb(0,0, ' + diff + ')';
             prev = c[0];
 
             //console.log(prev, diff);
 
 
-            $('body').css({
-                'background-color': color
+            $('body .strobe').css({
+                'background-color': color,
+                'border-color': colorBorder
             });
+
+            $('body .strobe1').css({
+                'background-color': color1
+            });
+            $('body .strobe2').css({
+                'background-color': color2
+            });
+            $('body .strobe3').css({
+                'background-color': color3
+            });
+            $('body .strobe4').css({
+                'background-color': color4
+            });
+
+
 
             canvasCtx.fillStyle = 'rgb(0, 0, 0)';
             canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
             var barWidth = (WIDTH / bufferLength) * 2.5;
+            //var barWidth = (WIDTH / bufferLength);
             var barHeight;
             var x = 0;
 
@@ -146,7 +170,7 @@ function visualize() {
 
                 x += barWidth + 1;
             }
-        };
+        }
 
         draw();
 
@@ -155,7 +179,6 @@ function visualize() {
     if (visualSetting == "off") {
         clearCanvas();
     }
-
 }
 
 
@@ -166,17 +189,13 @@ visualSelect.onchange = function () {
     visualize();
 };
 
-
 mute.onclick = muteSound;
 
 function muteSound() {
     if (mute.id == "") {
-        clearCanvas();
-        gainNode.gain.value = 0;
         mute.id = "activated";
         mute.innerHTML = "Unmute";
     } else {
-        gainNode.gain.value = 1;
         mute.id = "";
         mute.innerHTML = "Mute";
     }
@@ -235,8 +254,7 @@ function process(e) {
 
 function getPeaksAtThreshold(data, threshold) {
     var peaksArray = [];
-    var length = data.length;
-    for (var i = 0; i < length;) {
+    for (var i = 0; i < data.length;) {
         if (data[i] > threshold) {
             peaksArray.push(i);
             // Skip forward ~ 1/4s to get past this peak.
@@ -252,9 +270,15 @@ function countIntervalsBetweenNearbyPeaks(peaks) {
     peaks.forEach(function (peak, index) {
         for (var i = 0; i < 10; i++) {
             var interval = peaks[index + i] - peak;
-            var foundInterval = intervalCounts.some(function (intervalCount) {
-                if (intervalCount.interval === interval) return intervalCount.count++;
-            });
+
+            var foundInterval = intervalCounts.some(
+                function (intervalCount) {
+                    if (intervalCount.interval === interval) {
+                        return intervalCount.count++;
+                    }
+                }
+            );
+
             //Additional checks to avoid infinite loops in later processing
             if (!isNaN(interval) && interval !== 0 && !foundInterval) {
                 intervalCounts.push({
