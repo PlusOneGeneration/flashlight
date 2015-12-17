@@ -9,7 +9,7 @@ angular.module('Flashlight')
                 alert(url);
             });
         };
-
+        SocketService.emit('room.connect', {token: $state.params.room});
         $interval(function () {
             var signalModel = {
                 signal: Math.random(),

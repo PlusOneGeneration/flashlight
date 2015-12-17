@@ -23,11 +23,9 @@ module.exports = function (app) {
         });
 
         socket.on('room.connect', function (data) {
-            console.log('!!!!');
             TokenService.decode(data.token, function (err, data) {
                 if (err) return console.error(err);
                 var room = data.room;
-                console.log('Join Room', room);
                 socket.join(room);
             });
         });
