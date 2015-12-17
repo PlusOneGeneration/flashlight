@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "setup": "npm install && bower install --config.interactive=false",
-    "start": "nodemon -L -i node_modules/ -i public/ app.js",
+    "start": "nodemon app.js -L -i node_modules/ -i public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "jsonwebtoken": "^5.4.1",
     "plus.application": "^1.1.2",

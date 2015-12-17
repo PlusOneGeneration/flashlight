@@ -10,7 +10,8 @@
     "bootstrap": "~3.3.5",
     "angular": "~1.4.8",
     "angular-resource": "~1.4.8",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "lodash": "~3.10.1"
   },
   "homepage": ""
 }

@@ -1,13 +1,8 @@
 angular.module('Flashlight')
-    .factory('socket', function () {
-        var socket = io.connect('http://192.168.10.20:3000/');
-        return socket;
-    })
-
     .controller('RoomController', function ($scope, socket, $interval, $location, $state) {
         $scope.signal = 0;
 
-        socket.emit('connectToRoom', {token: $state.params.room});
+        socket.emit('room.connect', {token: $state.params.room});
 
         $interval(function () {
 
@@ -16,7 +11,7 @@ angular.module('Flashlight')
                 token: $state.params.room
             };
 
-            socket.emit('signal', signalModel);
+            socket.emit('room.signal', signalModel);
         }, 500);
         //
         socket.on('processedSignal', function (data) {
