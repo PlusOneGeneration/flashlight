@@ -1,12 +1,11 @@
 angular.module('Flashlight')
-    .factory('FlashlightResource', function ($resource) {
-        return $resource('/api/flashlight')
+    .factory('Room', function ($resource) {
+        return $resource('/api/rooms/:roomId')
     })
-
-    .controller('FlashlightController', function ($scope, $state, FlashlightResource) {
+    .controller('FlashlightController', function ($scope, $state, Room) {
         $scope.listen = function () {
-            FlashlightResource.get(function (responce) {
-                $state.go('room', {room: responce.room});
+            new Room().$save().then(function (room) {
+                $state.go('room', {room: room.room});
             });
         };
     })

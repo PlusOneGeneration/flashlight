@@ -3,8 +3,7 @@ var TokenService = function () {
     var secretKey = 'roomOnFlashlight';
 
     this.encode = function (data, next) {
-        var token = jwt.sign(data, secretKey, { algorithm: 'HS512'});
-        next(token);
+        jwt.sign(data, secretKey, {algorithm: 'HS512'}, next);
     };
 
     this.decode = function (token, next) {
