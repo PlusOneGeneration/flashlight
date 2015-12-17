@@ -1,5 +1,5 @@
-module.exports = function (app, io) {
-    var TokenService = require('./TokenService');
+module.exports = function (app) {
+    var TokenService = app.container.get('TokenService');
 
     app.post('/api/rooms', function (req, res) {
         var room = Math.random(3);

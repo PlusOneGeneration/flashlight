@@ -7,6 +7,8 @@ angular.module('Flashlight')
     .controller('RoomController', function ($scope, socket, $interval, $location, $state) {
         $scope.signal = 0;
 
+        socket.emit('connectToRoom', {token: $state.params.room});
+
         $interval(function () {
 
             var signalModel = {
