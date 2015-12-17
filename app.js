@@ -10,16 +10,15 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var port = 3000;
+
+io.on('connection', function (socket) {
+    socket.on('signal', function (data) {
+        socket.emit('processedSignal', {signal: data.signal});
+    });
+});
+
 server.listen(port, function () {
     console.log('Started: ' + port);
 });
 
-io.on('connection', function (socket) {
-    socket.on('hello', function (data) {
-        console.log('Hello!', data);
-        socket.emit('xxx', {message: 'hello to you too'})
-    });
-
-});
-
-require('./flashlight/flashlight')(app, io);
+require('./flashlight/room')(app);
