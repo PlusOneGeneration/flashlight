@@ -1,8 +1,7 @@
 angular.module('Flashlight')
-    .controller('RoomController', function ($scope, SocketService, $interval, $location, $state) {
+    .controller('RoomController', function ($scope, SocketService, $interval, $location, $state, AudioService) {
         $scope.signal = 0;
-        POC_analyser(function (data) {
-
+        AudioService.listen(function (data) {
             var signalModel = {
                 signal: data,
                 token: $state.params.room
