@@ -3,10 +3,16 @@ module.exports = function (app) {
     var SocketIO = app.container.get('SocketIO');
 
     SocketIO.onSocket(function (socket) {
+        socket.on('disconnect', function () {
+            console.log('Disconected socket', arguments);
+
+        });
 
         socket.on('room.create', function (data, next) {
             var room = Math.random(3);
+
             console.log('Create room', room);
+
             TokenService.encode({room: room, role: 'master'}, function (err, token) {
                 next(err, {room: token});
             });
