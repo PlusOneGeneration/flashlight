@@ -19,7 +19,6 @@ module.exports = function (app) {
 
         socket.on('room.signal', function (data) {
             var room = 'need to add room name'; // by token
-            console.log(data);
             SocketIO.emitRoom(room, 'processedSignal', {signal: data.signal});
         });
 
