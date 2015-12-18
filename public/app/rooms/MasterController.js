@@ -1,16 +1,17 @@
 angular.module('Flashlight')
-    .controller('MasterController', function ($scope, $interval, $location, $state, SocketService) {
+    .controller('MasterController', function ($scope, $interval, $location, $state, SocketService, AudioService) {
         $scope.signal = 0;
 
-        SocketService.emit('room.connect', {token: $state.params.room});
 
-        $interval(function () {
+        AudioService.listen(function (data) {
             var model = {
-                signal: Math.random(),
+                signal: data,
                 token: $state.params.room
             };
             SocketService.emit('room.signal', model);
-        }, 100);
+        });
+
+        SocketService.emit('room.connect', {token: $state.params.room});
 
         SocketService.scopeOn($scope, 'room.signal', function (data) {
             $scope.$apply(function () {
