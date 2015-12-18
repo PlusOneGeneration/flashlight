@@ -1,0 +1,10 @@
+<h2>Your room</h2>
+<div>{{signal}}</div>
+<a href="{{shareUrl}}" target="_blank" class="btn btn-success">Share listening</a>
+
+<div class="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+         aria-valuemin="0" style="width:{{signal*1000}}px">
+        <span class="sr-only">{{signal*1000}}s</span>
+    </div>
+</div>
