@@ -1,7 +1,7 @@
 angular.module('Flashlight')
+
     .controller('MasterController', function ($scope, $interval, $location, $state, SocketService, AudioService) {
         $scope.signal = 0;
-
 
         AudioService.listen(function (data) {
             var model = {

@@ -1,4 +1,4 @@
-angular.module('Flashlight')
+angular.module('AudioService', [])
 
     .service('AudioService', ['$q', function ($q) {
 

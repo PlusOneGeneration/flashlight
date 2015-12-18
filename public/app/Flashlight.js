@@ -1,5 +1,5 @@
 angular
-    .module('Flashlight', ['ui.router', 'SocketService'])
+    .module('Flashlight', ['ui.router', 'SocketService', 'AudioService'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/flashlight");
 
