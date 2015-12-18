@@ -3,22 +3,18 @@ module.exports = function (app) {
     var SocketIO = app.container.get('SocketIO');
 
     SocketIO.onSocket(function (socket) {
-        socket.on('disconnect', function () {
-            console.log('Disconected socket', arguments);
 
-        });
+        socket.on('room.master.create', function (data, next) {
+            var room = '' + Math.random(3) + '' + Math.random(3);
 
-        socket.on('room.create', function (data, next) {
-            var room = Math.random(3);
-
-            console.log('Create room', room);
+            //console.log('Create room', room);
 
             TokenService.encode({room: room, role: 'master'}, function (err, token) {
                 next(err, {room: token});
             });
         });
 
-        socket.on('room.listener', function (data, next) {
+        socket.on('room.listener.create', function (data, next) {
             TokenService.decode(data.token, function (err, data) {
                 TokenService.encode({room: data.room, role: 'listener'}, function (err, token) {
                     next(err, {room: token});
@@ -27,20 +23,17 @@ module.exports = function (app) {
         });
 
         socket.on('room.connect', function (data) {
-            TokenService.decode(data.token, function (err, data) {
+            TokenService.decode(data.token, function (err, model) {
                 if (err) return console.error(err);
 
-                var room = data.room;
-
-                console.log('Connect to room', room);
-                socket.join(room);
+                console.log('Connect to room', model.room);
+                socket.join(model.room);
             });
         });
 
         socket.on('room.signal', function (data) {
-            TokenService.decode(data.token, function (err, dataByToken) {
-                var room = dataByToken.room;
-                SocketIO.emitRoom(room, 'processedSignal', {signal: data.signal});
+            TokenService.decode(data.token, function (err, model) {
+                SocketIO.emitRoom(model.room, 'room.signal', {signal: data.signal});
             });
         });
     });

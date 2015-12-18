@@ -1,26 +1,26 @@
 angular.module('Flashlight')
-    .controller('RoomController', function ($scope, $interval, $location, $state, SocketService) {
+    .controller('MasterController', function ($scope, $interval, $location, $state, SocketService) {
         $scope.signal = 0;
 
         SocketService.emit('room.connect', {token: $state.params.room});
 
         $interval(function () {
-            var signalModel = {
+            var model = {
                 signal: Math.random(),
                 token: $state.params.room
             };
-            SocketService.emit('room.signal', signalModel);
+            SocketService.emit('room.signal', model);
         }, 100);
 
-        SocketService.scopeOn($scope, 'processedSignal', function (data) {
+        SocketService.scopeOn($scope, 'room.signal', function (data) {
             $scope.$apply(function () {
                 $scope.signal = data.signal;
             });
         });
 
-        SocketService.emit('room.listener', {token: $state.params.room}, function (err, data) {
+        SocketService.emit('room.listener.create', {token: $state.params.room}, function (err, data) {
             if (err) return console.error(err);
-            $scope.shareUrl = $state.href('listener')+data.room;
+            $scope.shareUrl = $state.href('listener', {room: data.room});
         });
     })
 ;
