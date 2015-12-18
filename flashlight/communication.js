@@ -6,9 +6,7 @@ module.exports = function (app) {
 
         socket.on('room.create', function (data, next) {
             var room = Math.random(3);
-            console.log('Create Room', room);
-            socket.join(room);
-
+            console.log('Create room', room);
             TokenService.encode({room: room, role: 'master'}, function (err, token) {
                 next(err, {room: token});
             });
@@ -25,7 +23,10 @@ module.exports = function (app) {
         socket.on('room.connect', function (data) {
             TokenService.decode(data.token, function (err, data) {
                 if (err) return console.error(err);
+
                 var room = data.room;
+
+                console.log('Connect to room', room);
                 socket.join(room);
             });
         });
