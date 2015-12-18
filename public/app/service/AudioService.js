@@ -1,6 +1,6 @@
-angular.module('AudioService', [])
+angular.module('Flashlight')
 
-    .service('AudioService', ['$q', function ($q) {
+    .service('AudioService', function ($q) {
 
         var deferred = $q.defer();
 
@@ -76,7 +76,7 @@ angular.module('AudioService', [])
 
                 var diff = dataArray[dataArray.length - 1] - dataArray[0];
                 diff = diff >= 0 ? diff : -diff;
-                diff *= 1.7;
+                diff *= 1.5;
 
                 diff = diff >= 256 ? 256 : diff;
                 diff = parseInt(diff);
@@ -92,5 +92,5 @@ angular.module('AudioService', [])
             addFilter: addFilter,
             listen: listen
         }
-    }])
+    })
 ;
