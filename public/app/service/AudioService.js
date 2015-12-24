@@ -20,7 +20,7 @@ angular.module('Flashlight')
             analyser.fftSize = 64;
             analyser.minDecibels = -60;
             analyser.maxDecibels = -10;
-            analyser.smoothingTimeConstant = 0.82;
+            analyser.smoothingTimeConstant = 0.5;
         };
 
         var createAndSetupCompressor = function () {
@@ -47,6 +47,8 @@ angular.module('Flashlight')
         var lowcutFilter = addFilter('highpass', 50, 500);
         var highcutFilter = addFilter('lowpass', 100, 500);
 
+        var theStream;
+
         var getAudioStream = function () {
             navigator.getUserMedia({audio: true},
                 function (stream) {
@@ -56,6 +58,7 @@ angular.module('Flashlight')
                     highcutFilter.connect(compressor);
                     compressor.connect(analyser);
                     deferred.resolve(stream);
+                    theStream = stream;
                 },
                 function errorCallback(error) {
                     console.log('navigator.getUserMedia error: ', error);
@@ -66,9 +69,17 @@ angular.module('Flashlight')
             return deferred.promise;
         };
 
+        var stopped = false;
+
         var listen = function (emit) {
+            stopped = false;
+            var fps = 5;
+
             var draw = function () {
-                drawVisual = requestAnimationFrame(draw);
+                if(stopped) return;
+                drawVisual = requestAnimationFrame(draw, 1000/fps);
+                //drawVisual = requestAnimationFrame(draw);
+
                 var bufferLength = analyser.frequencyBinCount;
                 var dataArray = new Uint8Array(bufferLength);
 
@@ -89,6 +100,17 @@ angular.module('Flashlight')
         };
 
         return {
+            stop: function () {
+                _.isFunction(theStream.stop) && theStream.stop();
+
+                if(_.isFunction(theStream.getAudioTracks)){
+                    _.each(theStream.getAudioTracks(), function (track) {
+                        track.stop();
+                    });
+                }
+
+                stopped = true;
+            },
             addFilter: addFilter,
             listen: listen
         }

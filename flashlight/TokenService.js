@@ -3,7 +3,7 @@ var TokenService = function (key) {
     var secretKey = key;
 
     this.encode = function (data, next) {
-        jwt.sign(data, secretKey, {algorithm: 'HS512'}, function (token) {
+        jwt.sign(data, secretKey, {algorithm: 'HS256'}, function (token) {
             next(null, token);
         });
     };

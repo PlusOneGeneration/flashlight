@@ -11,6 +11,10 @@ angular.module('Flashlight')
             SocketService.emit('room.signal', model);
         });
 
+        $scope.$on('$destroy', function () {
+            AudioService.stop();
+        });
+
         SocketService.emit('room.connect', {token: $state.params.room});
 
         SocketService.scopeOn($scope, 'room.signal', function (data) {
