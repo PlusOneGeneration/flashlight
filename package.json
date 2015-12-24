@@ -4,7 +4,7 @@
   "description": "Flashlight",
   "main": "app.js",
   "scripts": {
-    "setup": "npm install && bower install --config.interactive=false",
+    "setup": "npm install && bower install --config.interactive=false --allow-root",
     "start": "npm run setup && nodemon app.js -L -i node_modules/ -i public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
