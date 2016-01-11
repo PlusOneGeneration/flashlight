@@ -5,6 +5,7 @@ angular.module('Flashlight')
                                               SettingsService) {
         $scope.signal = 0;
         $scope.SettingsService = SettingsService;
+        $scope.showSettings = false;
 
         AudioService.listen(function (data) {
             var model = {

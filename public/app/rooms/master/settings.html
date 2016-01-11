@@ -1,14 +1,9 @@
 <div class="settings"></div>
 <a clipboard text="shareUrl" ng-click="showMessage('Copied')">
     <span class="glyphicon glyphicon-link"></span>
-</a>
-
-<a ui-sref="room.settings.qr">
+</a><a ui-sref="room.settings.qr">
     <span class="glyphicon glyphicon-qrcode"></span>
-</a>
-
-<a ui-sref="room.settings.colors">
+</a><a ui-sref="room.settings.colors">
     <span class="glyphicon glyphicon-adjust"></span>
 </a>
-
-<div ui-view="workspace"></div>
+<div ui-view="workspace" class="workspace"></div>

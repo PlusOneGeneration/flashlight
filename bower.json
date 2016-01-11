@@ -12,7 +12,8 @@
     "angular-ui-router": "~0.2.15",
     "lodash": "~3.10.1",
     "angular-clipboard": "~1.2.1",
-    "angular-qr": "~0.2.0"
+    "angular-qr": "~0.2.0",
+    "angular-color-picker": "angularjs-color-picker#~0.8.1"
   },
   "homepage": ""
 }

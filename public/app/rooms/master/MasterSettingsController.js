@@ -3,8 +3,12 @@ angular.module('Flashlight')
     .service('SettingsService', function () {
 
         return {
-            color: 'white',
-            effect: null
+            backgroundColor: 'rgb(0,0,0)',
+            color: 'rgb(255,255,255)',
+            scale: false,
+            randomColors: false,
+            smile: false,
+            lsd: false
         };
 
     })
