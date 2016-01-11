@@ -10,7 +10,9 @@
     "bootstrap": "~3.3.6",
     "angular": "~1.4.8",
     "angular-ui-router": "~0.2.15",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "angular-clipboard": "~1.2.1",
+    "angular-qr": "~0.2.0"
   },
   "homepage": ""
 }

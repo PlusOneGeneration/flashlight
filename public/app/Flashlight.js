@@ -1,5 +1,5 @@
 angular
-    .module('Flashlight', ['ui.router', 'SocketService'])
+    .module('Flashlight', ['ui.router', 'SocketService', 'angular-clipboard', 'ja.qr'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/flashlight");
 
@@ -11,13 +11,44 @@ angular
             })
             .state('room', {
                 url: "/rooms/:room",
-                templateUrl: "app/rooms/master.html",
+                templateUrl: "app/rooms/master/master.html",
                 controller: 'MasterController'
             })
             .state('listener', {
                 url: "/listener/:room",
-                templateUrl: "app/rooms/listener.html",
+                templateUrl: "app/rooms/listener/listener.html",
                 controller: 'ListenerController'
+            })
+            .state('room.settings', {
+                url: "/settings",
+                views: {
+                    'toolbar@room': {
+                        templateUrl: "app/rooms/master/settings.html",
+                        controller: 'MasterSettingsController'
+                    }
+                }
+            })
+            .state('room.settings.qr', {
+                url: "/qr",
+                views: {
+                    'workspace@room.settings': {
+                        templateUrl: "app/rooms/master/settings.qr.html"
+                    }
+                }
+            })
+            .state('room.settings.colors', {
+                url: "/colors",
+                views: {
+                    'workspace@room.settings': {
+                        templateUrl: "app/rooms/master/settings.colors.html",
+                        controller: 'MasterSettingsColorsController'
+                    }
+                }
+            })
+            .state('listener.settings', {
+                url: "/settings",
+                templateUrl: "app/rooms/listener/settings.html",
+                controller: 'ListenerSettingsController'
             })
     })
 ;

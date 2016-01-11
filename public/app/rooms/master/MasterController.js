@@ -1,7 +1,10 @@
 angular.module('Flashlight')
 
-    .controller('MasterController', function ($scope, $interval, $location, $state, SocketService, AudioService) {
+    .controller('MasterController', function ($scope, $interval, $location,
+                                              $state, SocketService, AudioService,
+                                              SettingsService) {
         $scope.signal = 0;
+        $scope.SettingsService = SettingsService;
 
         AudioService.listen(function (data) {
             var model = {
@@ -21,11 +24,6 @@ angular.module('Flashlight')
             $scope.$apply(function () {
                 $scope.signal = data.signal;
             });
-        });
-
-        SocketService.emit('room.listener.create', {token: $state.params.room}, function (err, data) {
-            if (err) return console.error(err);
-            $scope.shareUrl = $state.href('listener', {room: data.room});
         });
     })
 ;

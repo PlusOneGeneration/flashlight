@@ -10,14 +10,19 @@
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-clipboard/angular-clipboard.js"></script>
+    <script src="lib/qrcode/lib/qrcode.min.js"></script>
+    <script src="lib/angular-qr/angular-qr.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
 
     <!--Flashlight-->
     <script src="app/Flashlight.js"></script>
     <script src="app/FlashlightController.js"></script>
-    <script src="app/rooms/MasterController.js"></script>
-    <script src="app/rooms/ListenerController.js"></script>
+    <script src="app/rooms/master/MasterController.js"></script>
+    <script src="app/rooms/listener/ListenerController.js"></script>
+    <script src="app/rooms/master/MasterSettingsController.js"></script>
+    <script src="app/rooms/listener/ListenerSettingsController.js"></script>
 
     <!--Services-->
     <script src="app/service/SocketService.js"></script>
@@ -28,6 +33,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="styles/app.css"/>
 
 </head>
 <body ui-view>
