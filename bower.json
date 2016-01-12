@@ -13,7 +13,8 @@
     "lodash": "~3.10.1",
     "angular-clipboard": "~1.2.1",
     "angular-qr": "~0.2.0",
-    "angular-color-picker": "angularjs-color-picker#~0.8.1"
+    "angular-color-picker": "angularjs-color-picker#~0.8.1",
+    "bootstrap-material-design": "~0.5.7"
   },
   "homepage": ""
 }

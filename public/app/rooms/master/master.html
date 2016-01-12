@@ -1,19 +1,25 @@
-<!--<div ui-view="toolbar" class="toolbar"></div>-->
-<aside ng-class="{'active': showSettings}" style="z-index: 1000;" ui-view="toolbar" class="toolbar"></aside>
+<div id="st-container" class="st-container st-effect-12" ng-class="{'st-menu-open': showSettings}">
+    <aside ng-class="{'st-menu-open': showSettings}" style="z-index: 1000;" ui-view="toolbar"
+           class="toolbar st-menu st-effect-12"></aside>
 
-<div class="fullheight" >
-    <a ui-sref="flashlight"
-       class="pull-left">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-        Back
-    </a>
-    <a ui-sref="room.settings"
-       ng-click="showSettings = !showSettings"
-       class="pull-right">
-        <span class="glyphicon glyphicon-menu-hamburger"></span>
-        Settings
-    </a>
-    <div class="fullheight col-md-12" visualization signal="signal">
+    <div class="st-pusher">
 
+        <div class="fullheight st-content">
+            <a ui-sref="flashlight"
+               class="pull-left">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                Back
+            </a>
+            <a ui-sref="room.settings"
+               ng-click="showSettings = !showSettings"
+               class="pull-right">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                Settings
+            </a>
+
+            <div class="fullheight col-md-12" visualization signal="signal">
+
+            </div>
+        </div>
     </div>
 </div>

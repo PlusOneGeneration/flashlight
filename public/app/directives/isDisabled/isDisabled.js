@@ -7,13 +7,13 @@ angular.module('Flashlight')
                 scope.$watch('isDisabled', function (value) {
                     if (value) {
                         element.find('input').attr('disabled', 'disabled');
-                        element.find('button').attr('disabled', 'disabled');
+                        element.find('input').parent().addClass('disabled');
                         element.addClass('disabled');
 
                     } else {
                         element.find('input').removeAttr('disabled');
-                        element.find('button').removeAttr('disabled');
                         element.removeClass('disabled');
+                        element.find('input').parent().removeClass('disabled');
                     }
                 });
             },

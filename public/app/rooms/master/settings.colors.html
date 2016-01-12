@@ -1,5 +1,5 @@
-<ul class="list-group">
-    <li class="list-group-item">
+<ul class="settings-color">
+    <li>
         <label>Background Color</label>
         <color-picker ng-model="SettingsService.backgroundColor"
                       color-picker-format="'rgb'"
@@ -9,7 +9,6 @@
     </li>
 
     <li is-disabled="SettingsService.randomColors || SettingsService.smile || SettingsService.lsd"
-        class="list-group-item"
         ng-class="{'disabled': SettingsService.randomColors}">
 
         <label>Color</label>
@@ -20,46 +19,43 @@
         </color-picker>
     </li>
 
-    <li is-disabled="SettingsService.smile || SettingsService.lsd"
-            class="list-group-item">
-        <label>Random Colors</label>
-        <button class="btn btn-default"
-                ng-class="{'btn-info active': SettingsService.randomColors}"
-                ng-click="SettingsService.randomColors = !SettingsService.randomColors">
-            <span ng-if="SettingsService.randomColors">On</span>
-            <span ng-if="!SettingsService.randomColors">Off</span>
-        </button>
+    <li is-disabled="SettingsService.smile || SettingsService.lsd" class="clearfix">
+        <span class="pull-left">Random Colors</span>
+
+        <div class="togglebutton pull-right">
+            <label>
+                <input ng-click="SettingsService.randomColors = !SettingsService.randomColors" type="checkbox">
+                <span class="toggle"></span>
+            </label>
+        </div>
     </li>
 
-    <li is-disabled="SettingsService.lsd"
-            class="list-group-item">
-        <label>Scale Effect</label>
-        <button class="btn btn-default"
-                ng-class="{'btn-info active': SettingsService.scale}"
-                ng-click="SettingsService.scale = !SettingsService.scale">
-            <span ng-if="SettingsService.scale">On</span>
-            <span ng-if="!SettingsService.scale">Off</span>
-        </button>
+    <li is-disabled="SettingsService.lsd" class="clearfix">
+        <span class="pull-left">Scale Effect</span>
+        <div class="togglebutton pull-right">
+            <label>
+                <input ng-click="SettingsService.scale = !SettingsService.scale" type="checkbox">
+                <span class="toggle"></span>
+            </label>
+        </div>
     </li>
 
-    <li is-disabled="SettingsService.lsd || SettingsService.randomColors"
-            class="list-group-item">
-        <label>Smile Effect</label>
-        <button class="btn btn-default"
-                ng-class="{'btn-info active': SettingsService.smile}"
-                ng-click="SettingsService.smile = !SettingsService.smile">
-            <span ng-if="SettingsService.smile">On</span>
-            <span ng-if="!SettingsService.smile">Off</span>
-        </button>
+    <li is-disabled="SettingsService.lsd || SettingsService.randomColors" class="clearfix">
+        <span class="pull-left">Smile Effect</span>
+        <div class="togglebutton pull-right">
+            <label>
+                <input ng-click="SettingsService.smile = !SettingsService.smile" type="checkbox">
+                <span class="toggle"></span>
+            </label>
+        </div>
     </li>
-    <li is-disabled="SettingsService.smile || SettingsService.randomColors"
-            class="list-group-item">
-        <label>LSD Effect</label>
-        <button class="btn btn-default"
-                ng-class="{'btn-info active': SettingsService.lsd}"
-                ng-click="SettingsService.lsd = !SettingsService.lsd">
-            <span ng-if="SettingsService.lsd">On</span>
-            <span ng-if="!SettingsService.lsd">Off</span>
-        </button>
+    <li is-disabled="SettingsService.smile || SettingsService.randomColors" class="clearfix">
+        <span class="pull-left">LSD Effect</span>
+        <div class="togglebutton pull-right">
+            <label>
+                <input ng-click="SettingsService.lsd = !SettingsService.lsd" type="checkbox">
+                <span class="toggle"></span>
+            </label>
+        </div>
     </li>
 </ul>

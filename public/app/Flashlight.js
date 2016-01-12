@@ -29,23 +29,6 @@ angular
                     }
                 }
             })
-            .state('room.settings.qr', {
-                url: "/qr",
-                views: {
-                    'workspace@room.settings': {
-                        templateUrl: "app/rooms/master/settings.qr.html"
-                    }
-                }
-            })
-            .state('room.settings.colors', {
-                url: "/colors",
-                views: {
-                    'workspace@room.settings': {
-                        templateUrl: "app/rooms/master/settings.colors.html",
-                        controller: 'MasterSettingsColorsController'
-                    }
-                }
-            })
             .state('listener.settings', {
                 url: "/settings",
                 templateUrl: "app/rooms/listener/settings.html",

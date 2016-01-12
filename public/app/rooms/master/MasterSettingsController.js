@@ -13,7 +13,10 @@ angular.module('Flashlight')
 
     })
 
-    .controller('MasterSettingsController', function ($scope, $state, $location, SocketService) {
+    .controller('MasterSettingsController', function ($scope, $state, $location, SocketService, SettingsService) {
+        $scope.SettingsService = SettingsService;
+
+        $scope.view = 'settings.colors';
 
         $scope.showMessage = function (message) {
             alert(message);
@@ -27,9 +30,4 @@ angular.module('Flashlight')
             });
         });
     })
-
-    .controller('MasterSettingsColorsController', function ($scope, SettingsService) {
-        $scope.SettingsService = SettingsService;
-    })
-
 ;

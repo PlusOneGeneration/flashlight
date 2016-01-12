@@ -1,9 +1,13 @@
-<div class="settings"></div>
-<a clipboard text="shareUrl" ng-click="showMessage('Copied')">
-    <span class="glyphicon glyphicon-link"></span>
-</a><a ui-sref="room.settings.qr">
-    <span class="glyphicon glyphicon-qrcode"></span>
-</a><a ui-sref="room.settings.colors">
-    <span class="glyphicon glyphicon-adjust"></span>
-</a>
-<div ui-view="workspace" class="workspace"></div>
+<div class="btn-group btn-group-justified">
+    <a class="btn" ng-class="{'active': view == 'settings.share'}" ng-click="view = 'settings.share'">Share
+        <div class="ripple-container"></div>
+    </a>
+    <a class="btn" ng-class="{'active': view == 'settings.colors'}" ng-click="view = 'settings.colors'">
+        Settings
+        <div class="ripple-container"></div>
+    </a>
+</div>
+
+<div class="settings" ng-include="'app/rooms/master/' +view+ '.html'">
+
+</div>
