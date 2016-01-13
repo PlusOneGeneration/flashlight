@@ -2,20 +2,47 @@ angular.module('Flashlight')
 
     .service('SettingsService', function () {
 
-        return {
+        var settings = {
             backgroundColor: 'rgb(0,0,0)',
             color: 'rgb(255,255,255)',
             scale: false,
             randomColors: false,
             smile: false,
-            lsd: false
+            lsd: false,
+            showSettings: false
+        };
+
+        var defaultSettings = _.merge({}, settings);
+
+        return {
+            settings: settings,
+            reset: function () {
+                _.merge(this.settings, defaultSettings);
+            }
         };
 
     })
 
-    .controller('MasterSettingsController', function ($scope, $state, $location, SocketService, SettingsService, AudioService) {
+    .controller('MasterSettingsController', function ($scope, $rootScope, $state, $location, SocketService, SettingsService, AudioService, $timeout) {
         $scope.SettingsService = SettingsService;
+        $scope.showSettings = false;
+
         $scope.stopped = AudioService.getStatus();
+        $scope.view = 'settings.colors';
+
+        $scope.reset = function () {
+            $timeout(function () {
+                SettingsService.reset();
+            }, 0)
+        };
+
+        $scope.toggle = function () {
+          if ($scope.stopped) {
+              $scope.start();
+          } else {
+              $scope.stop();
+          }
+        };
 
         $scope.start = function () {
             AudioService.start();
@@ -27,10 +54,12 @@ angular.module('Flashlight')
             $scope.stopped = AudioService.getStatus();
         };
 
-        $scope.view = 'settings.colors';
 
         $scope.showMessage = function (message) {
-            alert(message);
+            $rootScope.message = message;
+            $timeout(function () {
+                $rootScope.message = '';
+            }, 1500)
         };
 
         SocketService.emit('room.listener.create', {token: $state.params.room}, function (err, data) {

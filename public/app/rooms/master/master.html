@@ -1,24 +1,26 @@
-<div id="st-container" class="st-container st-effect-12" ng-class="{'st-menu-open': showSettings}">
-    <aside ng-class="{'st-menu-open': showSettings}" style="z-index: 1000;" ui-view="toolbar"
-           class="toolbar st-menu st-effect-12"></aside>
+<div id="st-container" class="st-container st-effect-12"
+     ng-class="{'st-menu-open': SettingsService.settings.showSettings}">
+
+    <div class="bg" ng-click="SettingsService.settings.showSettings = false"></div>
+
+    <div class="message" ng-if="message" ng-class="{'fade': message}" ng-click="message = ''">{{message}}</div>
+
+    <a ui-sref="room.settings"
+       ng-click="SettingsService.settings.showSettings = true"
+       class="settings-button">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </a>
+
+    <aside ng-class="{'st-menu-open': showSettings}"
+           style="z-index: 1000;" ui-view="toolbar"
+           class="toolbar st-menu st-effect-12">
+    </aside>
 
     <div class="st-pusher">
 
         <div class="fullheight st-content">
-            <a ui-sref="flashlight"
-               class="pull-left">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-                Back
-            </a>
-            <a ui-sref="room.settings"
-               ng-click="showSettings = !showSettings"
-               class="pull-right">
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                Settings
-            </a>
-
-            <div class="fullheight col-md-12" visualization signal="signal">
-
+            <div class="fullheight col-md-12" visualization signal="signal"
+                 ng-click="showSettings = !showSettings">
             </div>
         </div>
     </div>

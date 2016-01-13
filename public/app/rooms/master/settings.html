@@ -1,16 +1,27 @@
-<div class="btn-group btn-group-justified">
-    <a class="btn" ng-class="{'active': view == 'settings.share'}" ng-click="view = 'settings.share'">Share
+<div class="tabs clearfix">
+    <a ng-click="SettingsService.settings.showSettings = false"
+       class="btn pull-left">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </a>
+    <a class="btn pull-left" ng-class="{'active': view == 'settings.share'}" ng-click="view = 'settings.share'">
+        <span class="glyphicon glyphicon-share-alt"></span>
+
         <div class="ripple-container"></div>
     </a>
-    <a class="btn" ng-class="{'active': view == 'settings.colors'}" ng-click="view = 'settings.colors'">
-        Settings
+    <a class="btn pull-left" ng-class="{'active': view == 'settings.colors'}" ng-click="view = 'settings.colors'">
+        <span class="glyphicon glyphicon-wrench"></span>
+
         <div class="ripple-container"></div>
     </a>
 </div>
 
-<a class="btn btn-default" ng-click="stop()" is-disabled="stopped">Stop</a>
-<a class="btn btn-default" ng-click="start()" is-disabled="!stopped">Start</a>
+<div class="settings" ng-include="'app/rooms/master/' +view+ '.html'"></div>
 
-<div class="settings" ng-include="'app/rooms/master/' +view+ '.html'">
-
+<div class="aside-footer">
+    <div class="wrapper">
+        <a ui-sref="flashlight" ng-click="reset()">
+            <span class="glyphicon glyphicon-off"></span>
+        </a>
+        <a ng-click="toggle()"><span class="glyphicon" ng-class="stopped ? 'glyphicon-play' : 'glyphicon-pause'"></span></a>
+    </div>
 </div>

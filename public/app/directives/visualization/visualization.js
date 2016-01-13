@@ -7,16 +7,16 @@ angular.module('Flashlight')
 
                 scope.SettingsService = SettingsService;
 
-                var randomColors = SettingsService.randomColors;
-                var scale = SettingsService.scale;
-                var smile = SettingsService.smile;
-                var lsd = SettingsService.lsd;
+                var randomColors = SettingsService.settings.randomColors;
+                var scale = SettingsService.settings.scale;
+                var smile = SettingsService.settings.smile;
+                var lsd = SettingsService.settings.lsd;
 
                 var rand = function () {
                     return parseInt(Math.random(0, 255) * 255);
                 };
 
-                scope.$watchCollection('SettingsService', function (settings) {
+                scope.$watch('SettingsService.settings', function (settings) {
                     scope.settings = settings;
                     randomColors = settings.randomColors;
                     scale = settings.scale;
@@ -28,7 +28,7 @@ angular.module('Flashlight')
                     if (!randomColors) {
                         element.css('background', scope.settings.color);
                     }
-                });
+                }, true);
 
                 scope.$watch('signal', function (signal) {
                     var opacity = signal / 255;

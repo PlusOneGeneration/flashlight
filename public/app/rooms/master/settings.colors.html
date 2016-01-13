@@ -1,61 +1,69 @@
 <ul class="settings-color">
-    <li>
-        <label>Background Color</label>
-        <color-picker ng-model="SettingsService.backgroundColor"
+    <li class="clearfix">
+        <label class="pull-left">Background Color</label>
+        <color-picker ng-model="SettingsService.settings.backgroundColor"
                       color-picker-format="'rgb'"
+                      class="pull-right"
                       color-picker-alpha="false"
+                      color-picker-swatch-only="true"
                       color-picker-on-change="onColorChange($event, color)">
         </color-picker>
     </li>
 
-    <li is-disabled="SettingsService.randomColors || SettingsService.smile || SettingsService.lsd"
-        ng-class="{'disabled': SettingsService.randomColors}">
+    <li class="clearfix"
+        is-disabled="SettingsService.settings.randomColors || SettingsService.settings.smile || SettingsService.settings.lsd"
+        ng-class="{'disabled': SettingsService.settings.randomColors}">
 
-        <label>Color</label>
-        <color-picker ng-model="SettingsService.color"
+        <label class="pull-left">Color</label>
+        <color-picker ng-model="SettingsService.settings.color"
                       color-picker-format="'rgb'"
+                      class="pull-right"
                       color-picker-alpha="false"
+                      color-picker-swatch-only="true"
                       color-picker-on-change="onColorChange($event, color)">
         </color-picker>
     </li>
 
-    <li is-disabled="SettingsService.smile || SettingsService.lsd" class="clearfix">
+    <li is-disabled="SettingsService.settings.smile || SettingsService.settings.lsd" class="clearfix">
         <span class="pull-left">Random Colors</span>
 
         <div class="togglebutton pull-right">
             <label>
-                <input ng-click="SettingsService.randomColors = !SettingsService.randomColors" type="checkbox">
+                <input ng-model="SettingsService.settings.randomColors" type="checkbox">
                 <span class="toggle"></span>
             </label>
         </div>
     </li>
 
-    <li is-disabled="SettingsService.lsd" class="clearfix">
+    <li is-disabled="SettingsService.settings.lsd" class="clearfix">
         <span class="pull-left">Scale Effect</span>
         <div class="togglebutton pull-right">
             <label>
-                <input ng-click="SettingsService.scale = !SettingsService.scale" type="checkbox">
+                <input ng-model="SettingsService.settings.scale" type="checkbox">
                 <span class="toggle"></span>
             </label>
         </div>
     </li>
 
-    <li is-disabled="SettingsService.lsd || SettingsService.randomColors" class="clearfix">
+    <li is-disabled="SettingsService.settings.lsd || SettingsService.settings.randomColors" class="clearfix">
         <span class="pull-left">Smile Effect</span>
         <div class="togglebutton pull-right">
             <label>
-                <input ng-click="SettingsService.smile = !SettingsService.smile" type="checkbox">
+                <input type="checkbox"
+                        ng-model="SettingsService.settings.smile">
                 <span class="toggle"></span>
             </label>
         </div>
     </li>
-    <li is-disabled="SettingsService.smile || SettingsService.randomColors" class="clearfix">
+    <li is-disabled="SettingsService.settings.smile || SettingsService.settings.randomColors"
+        class="clearfix" style="margin-bottom: 20px;">
         <span class="pull-left">LSD Effect</span>
         <div class="togglebutton pull-right">
             <label>
-                <input ng-click="SettingsService.lsd = !SettingsService.lsd" type="checkbox">
+                <input ng-model="SettingsService.settings.lsd" type="checkbox">
                 <span class="toggle"></span>
             </label>
         </div>
     </li>
+    <a class="btn-full" ng-click="reset(); showMessage('Back to defaults');">Reset Settings</a>
 </ul>

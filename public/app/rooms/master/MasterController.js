@@ -1,11 +1,14 @@
 angular.module('Flashlight')
 
-    .controller('MasterController', function ($scope, $interval, $location,
+    .controller('MasterController', function ($scope, $rootScope, $interval, $location,
                                               $state, SocketService, AudioService,
                                               SettingsService) {
         $scope.signal = 0;
         $scope.SettingsService = SettingsService;
-        $scope.showSettings = false;
+
+        $rootScope.$watch('message', function (value) {
+           $scope.message = value || '';
+        });
 
         AudioService.start = function () {
             if (!AudioService.getStatus()) {
