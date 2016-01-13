@@ -8,6 +8,9 @@
     </a>
 </div>
 
+<a class="btn btn-default" ng-click="stop()" is-disabled="stopped">Stop</a>
+<a class="btn btn-default" ng-click="start()" is-disabled="!stopped">Start</a>
+
 <div class="settings" ng-include="'app/rooms/master/' +view+ '.html'">
 
 </div>

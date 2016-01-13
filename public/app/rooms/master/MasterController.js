@@ -7,13 +7,21 @@ angular.module('Flashlight')
         $scope.SettingsService = SettingsService;
         $scope.showSettings = false;
 
-        AudioService.listen(function (data) {
-            var model = {
-                signal: data,
-                token: $state.params.room
-            };
-            SocketService.emit('room.signal', model);
-        });
+        AudioService.start = function () {
+            if (!AudioService.getStatus()) {
+                AudioService.stop();
+            }
+
+            AudioService.listen(function (data) {
+                var model = {
+                    signal: data,
+                    token: $state.params.room
+                };
+                SocketService.emit('room.signal', model);
+            });
+        };
+
+        AudioService.start();
 
         $scope.$on('$destroy', function () {
             AudioService.stop();

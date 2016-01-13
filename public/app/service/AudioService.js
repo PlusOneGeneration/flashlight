@@ -69,7 +69,7 @@ angular.module('Flashlight')
             return deferred.promise;
         };
 
-        var stopped = false;
+        var stopped = true;
 
         var listen = function (emit) {
             stopped = false;
@@ -112,7 +112,11 @@ angular.module('Flashlight')
                 stopped = true;
             },
             addFilter: addFilter,
-            listen: listen
+            listen: listen,
+            stopped: stopped,
+            getStatus: function () {
+                return stopped
+            }
         }
     })
 ;

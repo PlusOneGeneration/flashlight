@@ -13,8 +13,19 @@ angular.module('Flashlight')
 
     })
 
-    .controller('MasterSettingsController', function ($scope, $state, $location, SocketService, SettingsService) {
+    .controller('MasterSettingsController', function ($scope, $state, $location, SocketService, SettingsService, AudioService) {
         $scope.SettingsService = SettingsService;
+        $scope.stopped = AudioService.getStatus();
+
+        $scope.start = function () {
+            AudioService.start();
+            $scope.stopped = AudioService.getStatus();
+        };
+
+        $scope.stop = function () {
+            AudioService.stop();
+            $scope.stopped = AudioService.getStatus();
+        };
 
         $scope.view = 'settings.colors';
 
