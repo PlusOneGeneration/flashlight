@@ -11,10 +11,7 @@
         <span class="material-icons md-36">menu</span>
     </a>
 
-    <aside ng-class="{'st-menu-open': showSettings}"
-           style="z-index: 1000;" ui-view="toolbar"
-           class="toolbar st-menu st-effect-12">
-    </aside>
+    <ui-view name="toolbar" ng-class="{'st-menu-open': showSettings}"></ui-view>
 
     <div class="st-pusher">
 

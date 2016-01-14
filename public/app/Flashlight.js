@@ -1,6 +1,6 @@
 angular
     .module('Flashlight', ['ui.router', 'SocketService',
-        'angular-clipboard', 'ja.qr', 'color.picker'])
+        'angular-clipboard', 'ja.qr', 'color.picker', 'ngAnimate'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/flashlight");
 

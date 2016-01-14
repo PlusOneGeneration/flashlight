@@ -1,31 +1,36 @@
-<div class="aside-wrapper">
-    <div class="tabs clearfix">
-        <a ng-click="SettingsService.settings.showSettings = false"
-           class="btn pull-left">
-            <span class="material-icons md-36">menu</span>
-        </a>
-        <a class="btn pull-left" ng-class="{'active': view == 'settings.share'}" ng-click="view = 'settings.share'">
-            <span class="material-icons md-36">share</span>
+<aside style="z-index: 1000;"
+        class="toolbar st-menu st-effect-12">
 
-            <div class="ripple-container"></div>
-        </a>
-        <a class="btn pull-left" ng-class="{'active': view == 'settings.colors'}" ng-click="view = 'settings.colors'">
-            <span class="material-icons md-36">settings</span>
+    <div class="aside-wrapper">
+        <div class="tabs clearfix">
+            <a ng-click="SettingsService.settings.showSettings = false"
+               class="btn pull-left">
+                <span class="material-icons md-36">menu</span>
+            </a>
+            <a class="btn pull-left" ng-class="{'active': view == 'settings.share'}" ng-click="view = 'settings.share'">
+                <span class="material-icons md-36">share</span>
 
-            <div class="ripple-container"></div>
-        </a>
+                <div class="ripple-container"></div>
+            </a>
+            <a class="btn pull-left" ng-class="{'active': view == 'settings.colors'}"
+               ng-click="view = 'settings.colors'">
+                <span class="material-icons md-36">settings</span>
+
+                <div class="ripple-container"></div>
+            </a>
+        </div>
+
+        <div class="settings" ng-include="'app/rooms/master/' +view+ '.html'"></div>
     </div>
 
-    <div class="settings" ng-include="'app/rooms/master/' +view+ '.html'"></div>
-</div>
-
-<div class="aside-footer">
-    <div class="wrapper">
-        <a ui-sref="flashlight" ng-click="reset()">
-            <span class="material-icons md-36">power_settings_new</span>
-        </a>
-        <a ng-click="toggle()">
-            <span class="material-icons md-36">{{stopped ? 'play_arrow' : 'pause'}}</span>
-        </a>
+    <div class="aside-footer">
+        <div class="wrapper">
+            <a ui-sref="flashlight" ng-click="reset()">
+                <span class="material-icons md-36">power_settings_new</span>
+            </a>
+            <a ng-click="toggle()">
+                <span class="material-icons md-36">{{stopped ? 'play_arrow' : 'pause'}}</span>
+            </a>
+        </div>
     </div>
-</div>
+</aside>
