@@ -20,7 +20,7 @@
             </a>
         </div>
 
-        <div class="settings" ng-include="'app/rooms/master/' +view+ '.html'"></div>
+        <div class="settings" ng-include="'app/rooms/' +view+ '.html'"></div>
     </div>
 
     <div class="aside-footer">
@@ -28,7 +28,7 @@
             <a ui-sref="flashlight" ng-click="reset()">
                 <span class="material-icons md-36">power_settings_new</span>
             </a>
-            <a ng-click="toggle()">
+            <a ng-click="toggle()" ng-if="!listener">
                 <span class="material-icons md-36">{{stopped ? 'play_arrow' : 'pause'}}</span>
             </a>
         </div>

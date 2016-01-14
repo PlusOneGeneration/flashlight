@@ -23,7 +23,10 @@ angular.module('Flashlight')
 
     })
 
-    .controller('MasterSettingsController', function ($scope, $rootScope, $state, $location, SocketService, SettingsService, AudioService, $timeout) {
+    .controller('SettingsController', function ($scope, $rootScope, $state, $location,
+                                                SocketService, SettingsService, AudioService,
+                                                $timeout) {
+
         $scope.SettingsService = SettingsService;
         $scope.showSettings = false;
 

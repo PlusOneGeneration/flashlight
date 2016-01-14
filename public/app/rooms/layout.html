@@ -5,7 +5,13 @@
 
     <div class="message" ng-if="message" ng-class="{'fade': message}" ng-click="message = ''">{{message}}</div>
 
-    <a ui-sref="room.settings"
+    <a ng-if="!listener" ui-sref="room.settings"
+       ng-click="SettingsService.settings.showSettings = true"
+       class="settings-button">
+        <span class="material-icons md-36">menu</span>
+    </a>
+
+    <a ng-if="listener" ui-sref="listener.settings"
        ng-click="SettingsService.settings.showSettings = true"
        class="settings-button">
         <span class="material-icons md-36">menu</span>

@@ -12,27 +12,32 @@ angular
             })
             .state('room', {
                 url: "/rooms/:room",
-                templateUrl: "app/rooms/master/master.html",
+                templateUrl: "app/rooms/layout.html",
                 controller: 'MasterController'
-            })
-            .state('listener', {
-                url: "/listener/:room",
-                templateUrl: "app/rooms/listener/listener.html",
-                controller: 'ListenerController'
             })
             .state('room.settings', {
                 url: "/settings",
                 views: {
                     'toolbar@room': {
-                        templateUrl: "app/rooms/master/settings.html",
-                        controller: 'MasterSettingsController'
+                        templateUrl: "app/rooms/settings.html",
+                        controller: 'SettingsController'
                     }
                 }
             })
+            .state('listener', {
+                url: "/listener/:room",
+                templateUrl: "app/rooms/layout.html",
+                controller: 'ListenerController'
+            })
+
             .state('listener.settings', {
                 url: "/settings",
-                templateUrl: "app/rooms/listener/settings.html",
-                controller: 'ListenerSettingsController'
+                views: {
+                    'toolbar@listener': {
+                        templateUrl: "app/rooms/settings.html",
+                        controller: 'SettingsController'
+                    }
+                }
             })
     })
 ;
