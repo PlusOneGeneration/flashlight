@@ -6,9 +6,73 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/material-design/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('fonts/material-design/MaterialIcons-Regular.woff2') format('woff2'),
+    url('fonts/material-design/MaterialIcons-Regular.woff') format('woff'),
+    url('fonts/material-design/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 html {
     font-family: 'nexa_boldregular';
     font-size: 10px;
+}
+
+body {
+    background: #333;
 }
 
 html,
@@ -184,8 +248,8 @@ body,
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
+    margin-top: -93px;
+    margin-left: -84px;
 }
 
 .fullheight {
@@ -269,6 +333,10 @@ body,
 .settings-color li label {
     line-height: 30px;
     margin: 0;
+    transition: opacity 0.5s ease;
+}
+.settings-color li.disabled label {
+    opacity: 0.5;
 }
 
 .color-picker-wrapper input {
@@ -276,7 +344,6 @@ body,
 }
 
 .settings-button {
-    font-size: 2em;
     opacity: 0.3;
     color: #ccc;
     position: fixed;
@@ -300,14 +367,38 @@ body,
 }
 .aside-footer .wrapper {
     margin: 0 25px;
-    border-top: 2px solid #444;
+    /*border-top: 2px solid #444;*/
     padding: 10px 0;
     text-align: center;
 }
 
 .aside-footer a {
-    font-size: 2em;
     padding: 0 20px;
+    cursor: pointer;
+}
+
+.aside-wrapper {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.aside-wrapper {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -60px;
+}
+.aside-wrapper:after {
+    content: "";
+    display: block;
+}
+.aside-footer, .aside-wrapper:after {
+    height: 60px;
+}
+.aside-footer {
+    background: #4C4F54;
+    box-shadow: 0 -2px 50px #222;
+    z-index: 10;
 }
 
 .tabs {
@@ -363,6 +454,7 @@ body,
     text-align: center;
     opacity: 0.7;
     font-weight: bold;
+    text-shadow: 0 0 20px #000, 0 0 80px #333, 0 0 90px #666;
 }
 
 .message.fade {
@@ -393,4 +485,66 @@ body,
 .togglebutton label .toggle, .togglebutton label input[type=checkbox][disabled] + .toggle {
     margin-right: 7px;
     background-color: #666;
+}
+
+.color-picker-wrapper .color-picker-panel {
+    top: 130% !important;
+    border-radius: 4px;
+    box-shadow: 0 5px 30px -2px #000;
+}
+
+.color-picker-wrap .input-group > span {
+    transition: background-color 0.5s ease;
+}
+.color-picker-wrap .input-group.disabled > span {
+    background-color: #999 !important;
+    cursor: not-allowed;
+}
+
+
+.btn-start {
+    border-radius: 15px;
+    padding: 10px 30px;
+    width: 166px;
+}
+
+.bar {
+    position: relative;
+    width: 20px;
+    height: 110px;
+    display:inline-block;
+}
+.bar::before {
+    position:absolute;
+    content: "";
+    display: block;
+    height:100px;
+    width: 40px;
+    background: #DA4430;
+    animation: die 1.5s infinite ease-in-out;
+    bottom:0;
+}
+
+.delay-short:before {
+    animation-delay: .25s;
+}
+
+.delay-long:before {
+    animation-delay: .50s;
+}
+.delay-really-long:before {
+    animation-delay: .75s;
+}
+
+@keyframes die {
+    25% {
+        background: #019B58;
+    }
+    50%{
+        height:1px;
+        background: #156AEB;
+    }
+    75% {
+        background: #FFB505;
+    }
 }

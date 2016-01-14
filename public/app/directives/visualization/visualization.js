@@ -38,15 +38,15 @@ angular.module('Flashlight')
                     }
 
                     if (scale) {
-                        element.css('-webkit-transform', 'scale(' + opacity + ')');
                         element.css('-webkit-border-radius', signal * 50);
+                        element.css('-webkit-transform', 'scale(' + opacity + ')');
                     } else {
-                        element.css('-webkit-transform', 'scale(1)');
                         element.css('-webkit-border-radius', 0);
+                        element.css('-webkit-transform', 'scale(1)');
                     }
                     if (lsd) {
-                        element.css('-webkit-transform', 'scale(' + opacity + ')');
                         element.css('-webkit-border-radius', signal * 50);
+                        element.css('-webkit-transform', 'scale(' + opacity + ')');
                         element.css('-webkit-transform', 'rotate(' + rand() + 'deg)');
                         element.css('background', 'rgb(' + rand() + ' , ' + rand() + ', ' + rand() + ')');
                     }

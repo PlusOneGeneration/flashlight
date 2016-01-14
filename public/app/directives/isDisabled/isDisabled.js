@@ -8,8 +8,8 @@ angular.module('Flashlight')
                     if (value) {
                         element.find('input').attr('disabled', 'disabled');
                         element.find('a').addClass('disabled');
-                        element.find('input').parent().addClass('disabled');
                         element.addClass('disabled');
+                        element.find('input').parent().addClass('disabled');
 
                     } else {
                         element.find('input').removeAttr('disabled');

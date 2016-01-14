@@ -3,7 +3,8 @@
         <label class="pull-left">Background Color</label>
         <color-picker ng-model="SettingsService.settings.backgroundColor"
                       color-picker-format="'rgb'"
-                      class="pull-right"
+                      class="pull-right color-picker-wrap"
+                      color-picker-pos="'bottom right'"
                       color-picker-alpha="false"
                       color-picker-swatch-only="true"
                       color-picker-on-change="onColorChange($event, color)">
@@ -17,7 +18,8 @@
         <label class="pull-left">Color</label>
         <color-picker ng-model="SettingsService.settings.color"
                       color-picker-format="'rgb'"
-                      class="pull-right"
+                      class="pull-right color-picker-wrap"
+                      color-picker-pos="'bottom right'"
                       color-picker-alpha="false"
                       color-picker-swatch-only="true"
                       color-picker-on-change="onColorChange($event, color)">
@@ -25,7 +27,7 @@
     </li>
 
     <li is-disabled="SettingsService.settings.smile || SettingsService.settings.lsd" class="clearfix">
-        <span class="pull-left">Random Colors</span>
+        <label class="pull-left">Random Colors</label>
 
         <div class="togglebutton pull-right">
             <label>
@@ -36,7 +38,7 @@
     </li>
 
     <li is-disabled="SettingsService.settings.lsd" class="clearfix">
-        <span class="pull-left">Scale Effect</span>
+        <label class="pull-left">Scale Effect</label>
         <div class="togglebutton pull-right">
             <label>
                 <input ng-model="SettingsService.settings.scale" type="checkbox">
@@ -46,7 +48,7 @@
     </li>
 
     <li is-disabled="SettingsService.settings.lsd || SettingsService.settings.randomColors" class="clearfix">
-        <span class="pull-left">Smile Effect</span>
+        <label class="pull-left">Smile Effect</label>
         <div class="togglebutton pull-right">
             <label>
                 <input type="checkbox"
@@ -57,7 +59,7 @@
     </li>
     <li is-disabled="SettingsService.settings.smile || SettingsService.settings.randomColors"
         class="clearfix" style="margin-bottom: 20px;">
-        <span class="pull-left">LSD Effect</span>
+        <label class="pull-left">LSD Effect</label>
         <div class="togglebutton pull-right">
             <label>
                 <input ng-model="SettingsService.settings.lsd" type="checkbox">
