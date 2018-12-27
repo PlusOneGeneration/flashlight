@@ -15,3 +15,12 @@ RUN apt-get -y install nodejs
 
 RUN npm install -g forever nodemon
 RUN npm install -g bower
+RUN rm -rf node_modules || echo no-node_modules
+
+ADD . /project
+
+RUN bash -c "npm install"
+RUN bash -c "bower install --config.interactive=false --allow-root"
+
+EXPOSE 4000
+CMD npm start
