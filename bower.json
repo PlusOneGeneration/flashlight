@@ -1,5 +1,5 @@
 {
-  "name": "Flashlight",
+  "name": "flashlight",
   "description": "",
   "main": "index.js",
   "license": "ISC",
@@ -17,5 +17,9 @@
     "bootstrap-material-design": "~0.5.7",
     "angular-animate": "~1.4.8"
   },
+  "resolutions": {
+    "angular": "1.4.14"
+  },
+
   "homepage": ""
 }
